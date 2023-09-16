@@ -21,10 +21,23 @@ class _CampoTextoState extends State<CampoTexto> {
             'Valor inválido, digite valores maiores que zero e utilize ponto (.).';
       });
     } else {
-      setState(() {
-        _textoResultado = 'Valores corretos, prosseguindo com o cálculo.';
-      });
+      if (precoAlcool / precoGasolina >= 0.7) {
+        setState(() {
+          _textoResultado = "Melhor abastecer com gasolina.";
+        });
+      } else {
+        setState(() {
+          _textoResultado = "Melhor abastecer com álcool.";
+        });
+      }
+
+      _limparCampos();
     }
+  }
+
+  void _limparCampos() {
+    _controllerAlcool.text = "";
+    _controllerGasolina.text = "";
   }
 
   @override
